@@ -20,8 +20,7 @@ jobs:
           chmod +x ./pkg2appimage-*.AppImage;
           export ARCH=x86_64; 
           ./pkg2appimage-*.AppImage  Chromium;
-          run: echo "::set-env name=ARTNAME::$(basename out/*.AppImage)";
-          ls;
+          echo "::set-env name=ARTNAME::$(basename out/*.AppImage)";
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
