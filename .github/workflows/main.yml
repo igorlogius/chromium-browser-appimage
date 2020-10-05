@@ -2,13 +2,8 @@
 
 name: CI
 
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the main branch
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -19,21 +14,14 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      #- uses: actions/checkout@v2
-
-      # Runs a single command using the runners shell
-      #- name: Run a one-line script
-      #  run: echo Hello, world!
-      # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: | 
           wget -c https://github.com/$(wget -q https://github.com/AppImage/pkg2appimage/releases -O - | grep "pkg2appimage-.*-x86_64.AppImage" | head -n 1 | cut -d '"' -f 2);
           chmod +x ./pkg2appimage-*.AppImage;
           export ARCH=x86_64; 
           ./pkg2appimage-*.AppImage  Chromium;
-          ls -l;
-          ls -l out/;
+          run: echo "::set-env name=ARTNAME::$(basename out/*.AppImage)"
+          
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -51,8 +39,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-          asset_path: ./out/Chromium-88.0.4283.0.glibc2.16-x86_64.AppImage
-          asset_name:  Chromium-88.0.4283.0.glibc2.16-x86_64.AppImage
+          asset_path: ./out/${{ ARTNAME }}
+          asset_name:  ${{ ARTNAME }}
           asset_content_type: application/x-iso9660-appimage
           
           
