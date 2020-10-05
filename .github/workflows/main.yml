@@ -36,8 +36,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
+          tag_name: ${{ env.ARTNAME }}
+          release_name: Release ${{ env.ARTNAME }}
           draft: false
           prerelease: false
       - name: Upload Release Asset
@@ -47,8 +47,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-          asset_path: ./out/${{ ARTNAME }}
-          asset_name:  ${{ ARTNAME }}
+          asset_path: ./out/${{ env.ARTNAME }}
+          asset_name:  ${{ env.ARTNAME }}
           asset_content_type: application/x-iso9660-appimage
           
           
