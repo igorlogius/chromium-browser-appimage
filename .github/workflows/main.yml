@@ -14,7 +14,7 @@ jobs:
   # This workflow contains a single job called "build"
   Chromium:
     # The type of runner that the job will run on
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-14.04
 
     steps:
       - name: Download 
@@ -23,7 +23,8 @@ jobs:
           chmod +x ./pkg2appimage-*.AppImage;
           export ARCH=x86_64; 
           ./pkg2appimage-*.AppImage Chromium;
-          echo "::set-env name=ARTNAME::$(basename out/*.AppImage)";
+          echo "::set-env name=ARTNAME::$(date +%F)_$(basename out/*.AppImage)";
+          
       
       - name: Create Release
         id: create_release
