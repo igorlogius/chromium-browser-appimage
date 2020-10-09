@@ -32,7 +32,7 @@ In case, if FUSE support libraries are not installed on the host system, it is
 still possible to run the AppImage
 
 ```bash
-./Firefox-*.AppImage --appimage-extract
+./Chromium-*.AppImage --appimage-extract
 cd squashfs-root
 ./AppRun
 ```
