@@ -24,8 +24,8 @@ jobs:
           ./pkg2appimage-*.AppImage Chromium;
           echo "::set-env name=ARTNAME::$(basename out/*.AppImage)";
           #echo "ARTNAME=$(basename out/*.AppImage)" >> $GITHUB_ENV;
-          echo "::set-env name=DATE::$(date +%F_%R)";
-          #echo "DATE=$(date +%F)" >> $GITHUB_ENV;
+          echo "::set-env name=DATE::$(date +%F+%R)";
+          #echo "DATE=$(date +%F+%R)" >> $GITHUB_ENV;
 
           
       
