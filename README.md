@@ -1,15 +1,14 @@
-<h1 align="center">
-	<img src="https://www.chromium.org/_/rsrc/1438879449147/config/customLogo.gif?revision=3" alt="Chromium" height=48 width=48 align="middle">
-	Chromium AppImage
-</h1>
+
+
+
+# ![](https://www.chromium.org/_/rsrc/1438879449147/config/customLogo.gif?revision=3) Chromium AppImage ![](https://www.chromium.org/_/rsrc/1438879449147/config/customLogo.gif?revision=3)
+
 
 Chromium Latest (unofficial) AppImages by GitHub Actions Continuous Integration
 
 ## Get Started
 
-Download the latest release here
-
-https://github.com/igorlogius/chromium-browser-appimage/releases
+[Download the latest release here](https://github.com/igorlogius/chromium-browser-appimage/releases)
 
 
 ### Executing
@@ -17,7 +16,7 @@ https://github.com/igorlogius/chromium-browser-appimage/releases
 Just double click the `*.AppImage` file and you are done!
 
 > In normal cases, the above method should work, but in some rare cases
-the `+x` permission is not set. So, right click > Properties > Allow Execution
+the `+x` permission missing. So, right click > Properties > Allow Execution
 
 #### Terminal 
 ```bash
