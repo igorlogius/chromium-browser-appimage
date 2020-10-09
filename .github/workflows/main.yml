@@ -25,7 +25,7 @@ jobs:
           #echo "::set-env name=ARTNAME::$(basename out/*.AppImage)";
           echo "ARTNAME=$(basename out/*.AppImage)" >> $GITHUB_ENV;
           #echo "::set-env name=DATE::$(date +%s)";
-          echo "DATE=$(date +%s)" >> $GITHUB_ENV;
+          echo "DATE=$(date +%F_%H-%M)" >> $GITHUB_ENV;
 
           
       
