@@ -35,8 +35,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ env.DATE }}_${{ env.ARTNAME }}
-          release_name: ${{ env.DATE }}_${{ env.ARTNAME }}
+          tag_name: ${{DATE}}_${{ARTNAME}}
+          release_name: ${{DATE}}_${{ARTNAME}}
           draft: false
           prerelease: false
           
@@ -49,8 +49,8 @@ jobs:
           # pulls from CREATE RELEASE step, refs it's ID to get its outputs, which include `upload_url`.
           # ref: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
           upload_url: ${{ steps.create_release.outputs.upload_url }}           
-          asset_path: ./out/${{ env.ARTNAME }}
-          asset_name:  ${{ env.ARTNAME }}
+          asset_path: ./out/${{ARTNAME}}
+          asset_name:  ${{ARTNAME}}
           asset_content_type: application/x-iso9660-appimage
           
           
