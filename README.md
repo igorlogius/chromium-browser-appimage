@@ -1,5 +1,5 @@
 <h1 align="center">
-	<img src="https://www.chromium.org/_/rsrc/1438879449147/config/customLogo.gif?revision=3" alt="Chromium" height=200 width=200 align="middle">
+	<img src="https://www.chromium.org/_/rsrc/1438879449147/config/customLogo.gif?revision=3" alt="Chromium" height=48 width=48 align="middle">
 	Chromium AppImage
 </h1>
 
