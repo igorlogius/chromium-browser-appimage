@@ -2,34 +2,31 @@
 
 name: Release
 
+# when to run
 on:
-  workflow_dispatch:
-  
+  # manually
+  workflow_dispatch:  
+  # every 24 hours  
   schedule:
     - cron: "5 */24 * * *"
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  Chromium:
-    # The type of runner that the job will run on
+  # job name 
+  chromium-x86_64_build:
+    # runner type
     runs-on: ubuntu-16.04
 
     steps:
-      - name: Download 
+      - name: pkg2appimage build
         run: | 
-          wget -c https://github.com/$(wget -q https://github.com/AppImage/pkg2appimage/releases -O - | grep "pkg2appimage-.*-x86_64.AppImage" | head -n 1 | cut -d '"' -f 2);
+          wget -q -c https://github.com/$(wget -q https://github.com/AppImage/pkg2appimage/releases -O - | grep "pkg2appimage-.*-x86_64.AppImage" | head -n 1 | cut -d '"' -f 2);
           chmod +x ./pkg2appimage-*.AppImage;
-          export ARCH=x86_64; 
+          export ARCH=x86_64;
           ./pkg2appimage-*.AppImage Chromium;
-          #echo "::set-env name=ARTNAME::$(basename out/*.AppImage)";
           echo "ARTNAME=$(basename out/*.AppImage)" >> $GITHUB_ENV;
-          #echo "::set-env name=DATE::$(date +%s)";
           echo "DATE=$(date +%F_%H-%M)" >> $GITHUB_ENV;
-
-          
       
-      - name: Create Release
+      - name: create release
         id: create_release
         uses: actions/create-release@v1
         env:
@@ -40,7 +37,7 @@ jobs:
           draft: false
           prerelease: false
           
-      - name: Upload Release Asset
+      - name: upload release asset
         id: upload-release-asset 
         uses: actions/upload-release-asset@v1
         env:
@@ -52,5 +49,4 @@ jobs:
           asset_path: ./out/${{env.ARTNAME}}
           asset_name:  ${{env.ARTNAME}}
           asset_content_type: application/x-iso9660-appimage
-          
           
